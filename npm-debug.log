@@ -1,0 +1,186 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'ngrok' ]
+2 info using npm@1.4.3
+3 info using node@v0.8.23
+4 verbose cache add [ 'ngrok', null ]
+5 verbose cache add name=undefined spec="ngrok" args=["ngrok",null]
+6 verbose parsed url { pathname: 'ngrok', path: 'ngrok', href: 'ngrok' }
+7 silly lockFile 893a9e06-ngrok ngrok
+8 verbose lock ngrok /Users/spk_mac/.npm/893a9e06-ngrok.lock
+9 silly lockFile 893a9e06-ngrok ngrok
+10 silly lockFile 893a9e06-ngrok ngrok
+11 verbose addNamed [ 'ngrok', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile ccf7dd4b-ngrok ngrok@
+14 verbose lock ngrok@ /Users/spk_mac/.npm/ccf7dd4b-ngrok.lock
+15 silly addNameRange { name: 'ngrok', range: '*', hasData: false }
+16 verbose url raw ngrok
+17 verbose url resolving [ 'https://registry.npmjs.org/', './ngrok' ]
+18 verbose url resolved https://registry.npmjs.org/ngrok
+19 info trying registry request attempt 1 at 14:01:58
+20 http GET https://registry.npmjs.org/ngrok
+21 http 200 https://registry.npmjs.org/ngrok
+22 silly registry.get cb [ 200,
+22 silly registry.get   { date: 'Tue, 25 Mar 2014 21:01:59 GMT',
+22 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+22 silly registry.get     etag: '"29STKUV3HL6NR2PXG42B7NSOR"',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     via: '1.1 varnish',
+22 silly registry.get     'cache-control': 'max-age=1',
+22 silly registry.get     'content-length': '11815',
+22 silly registry.get     'accept-ranges': 'bytes',
+22 silly registry.get     age: '0',
+22 silly registry.get     'x-served-by': 'cache-v43-ASH, cache-lax1422-LAX',
+22 silly registry.get     'x-cache': 'MISS, MISS',
+22 silly registry.get     'x-cache-hits': '0, 0',
+22 silly registry.get     'x-timer': 'S1395781319.404766798,VS0,VS-54,VE115,VE233',
+22 silly registry.get     vary: 'Accept',
+22 silly registry.get     'keep-alive': 'timeout=10, max=50',
+22 silly registry.get     connection: 'Keep-Alive' } ]
+23 silly addNameRange number 2 { name: 'ngrok', range: '*', hasData: true }
+24 silly addNameRange versions [ 'ngrok',
+24 silly addNameRange   [ '0.1.0',
+24 silly addNameRange     '0.1.1',
+24 silly addNameRange     '0.1.2',
+24 silly addNameRange     '0.1.3',
+24 silly addNameRange     '0.1.4',
+24 silly addNameRange     '0.1.5',
+24 silly addNameRange     '0.1.6',
+24 silly addNameRange     '0.1.7',
+24 silly addNameRange     '0.1.8' ] ]
+25 verbose addNamed [ 'ngrok', '0.1.8' ]
+26 verbose addNamed [ '0.1.8', '0.1.8' ]
+27 silly lockFile 89730964-ngrok-0-1-8 ngrok@0.1.8
+28 verbose lock ngrok@0.1.8 /Users/spk_mac/.npm/89730964-ngrok-0-1-8.lock
+29 silly lockFile d5cc7633--npmjs-org-ngrok-ngrok-0-1-8-tgz https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz
+30 verbose lock https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz /Users/spk_mac/.npm/d5cc7633--npmjs-org-ngrok-ngrok-0-1-8-tgz.lock
+31 verbose addRemoteTarball [ 'https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz',
+31 verbose addRemoteTarball   '5e7d0528ad0951ff9aa4142d7744fc54ec559e76' ]
+32 info retry fetch attempt 1 at 14:01:59
+33 verbose fetch to= /var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/tmp.tgz
+34 http GET https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz
+35 http 200 https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz
+36 verbose tar unpack /var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/tmp.tgz
+37 silly lockFile b19be4f1-19432-0-5748115433380008-package tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package
+38 verbose lock tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package /Users/spk_mac/.npm/b19be4f1-19432-0-5748115433380008-package.lock
+39 silly lockFile 53d74dcc-19432-0-5748115433380008-tmp-tgz tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/tmp.tgz
+40 verbose lock tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/tmp.tgz /Users/spk_mac/.npm/53d74dcc-19432-0-5748115433380008-tmp-tgz.lock
+41 silly gunzTarPerm modes [ '755', '644' ]
+42 silly gunzTarPerm extractEntry package.json
+43 silly gunzTarPerm extractEntry .npmignore
+44 silly gunzTarPerm extractEntry README.md
+45 silly gunzTarPerm extractEntry index.js
+46 silly gunzTarPerm extractEntry postinstall.js
+47 silly gunzTarPerm extractEntry .travis.yml
+48 silly gunzTarPerm extractEntry test/chai.js
+49 silly gunzTarPerm extractEntry test/ngrok.eventemitter.spec.js
+50 silly gunzTarPerm extractEntry test/ngrok.spec.js
+51 silly gunzTarPerm extractEntry test/mocha.opts
+52 silly lockFile b19be4f1-19432-0-5748115433380008-package tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package
+53 silly lockFile b19be4f1-19432-0-5748115433380008-package tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package
+54 silly lockFile 53d74dcc-19432-0-5748115433380008-tmp-tgz tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/tmp.tgz
+55 silly lockFile 53d74dcc-19432-0-5748115433380008-tmp-tgz tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/tmp.tgz
+56 verbose tar pack [ '/Users/spk_mac/.npm/ngrok/0.1.8/package.tgz',
+56 verbose tar pack   '/var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package' ]
+57 verbose tarball /Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+58 verbose folder /var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package
+59 silly lockFile b19be4f1-19432-0-5748115433380008-package tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package
+60 verbose lock tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package /Users/spk_mac/.npm/b19be4f1-19432-0-5748115433380008-package.lock
+61 silly lockFile 50de16bc--mac-npm-ngrok-0-1-8-package-tgz tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+62 verbose lock tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz /Users/spk_mac/.npm/50de16bc--mac-npm-ngrok-0-1-8-package-tgz.lock
+63 silly lockFile b19be4f1-19432-0-5748115433380008-package tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package
+64 silly lockFile b19be4f1-19432-0-5748115433380008-package tar:///var/folders/8m/v82ffvs53px3jckc9h141rw40000gn/T/npm-64530-DFdEALEn/1395781319432-0.5748115433380008/package
+65 silly lockFile 50de16bc--mac-npm-ngrok-0-1-8-package-tgz tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+66 silly lockFile 50de16bc--mac-npm-ngrok-0-1-8-package-tgz tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+67 silly lockFile 70fb156e--spk-mac-npm-ngrok-0-1-8-package /Users/spk_mac/.npm/ngrok/0.1.8/package
+68 verbose lock /Users/spk_mac/.npm/ngrok/0.1.8/package /Users/spk_mac/.npm/70fb156e--spk-mac-npm-ngrok-0-1-8-package.lock
+69 silly lockFile 70fb156e--spk-mac-npm-ngrok-0-1-8-package /Users/spk_mac/.npm/ngrok/0.1.8/package
+70 silly lockFile 70fb156e--spk-mac-npm-ngrok-0-1-8-package /Users/spk_mac/.npm/ngrok/0.1.8/package
+71 verbose tar unpack /Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+72 silly lockFile 892eb788--spk-mac-npm-ngrok-0-1-8-package tar:///Users/spk_mac/.npm/ngrok/0.1.8/package
+73 verbose lock tar:///Users/spk_mac/.npm/ngrok/0.1.8/package /Users/spk_mac/.npm/892eb788--spk-mac-npm-ngrok-0-1-8-package.lock
+74 silly lockFile 50de16bc--mac-npm-ngrok-0-1-8-package-tgz tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+75 verbose lock tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz /Users/spk_mac/.npm/50de16bc--mac-npm-ngrok-0-1-8-package-tgz.lock
+76 silly gunzTarPerm modes [ '755', '644' ]
+77 silly gunzTarPerm extractEntry package.json
+78 silly gunzTarPerm extractEntry .npmignore
+79 silly gunzTarPerm extractEntry README.md
+80 silly gunzTarPerm extractEntry index.js
+81 silly gunzTarPerm extractEntry postinstall.js
+82 silly gunzTarPerm extractEntry .travis.yml
+83 silly gunzTarPerm extractEntry test/chai.js
+84 silly gunzTarPerm extractEntry test/ngrok.eventemitter.spec.js
+85 silly gunzTarPerm extractEntry test/ngrok.spec.js
+86 silly gunzTarPerm extractEntry test/mocha.opts
+87 silly lockFile 892eb788--spk-mac-npm-ngrok-0-1-8-package tar:///Users/spk_mac/.npm/ngrok/0.1.8/package
+88 silly lockFile 892eb788--spk-mac-npm-ngrok-0-1-8-package tar:///Users/spk_mac/.npm/ngrok/0.1.8/package
+89 silly lockFile 50de16bc--mac-npm-ngrok-0-1-8-package-tgz tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+90 silly lockFile 50de16bc--mac-npm-ngrok-0-1-8-package-tgz tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+91 verbose chmod /Users/spk_mac/.npm/ngrok/0.1.8/package.tgz 644
+92 verbose chown /Users/spk_mac/.npm/ngrok/0.1.8/package.tgz [ 501, 20 ]
+93 silly lockFile d5cc7633--npmjs-org-ngrok-ngrok-0-1-8-tgz https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz
+94 silly lockFile d5cc7633--npmjs-org-ngrok-ngrok-0-1-8-tgz https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz
+95 silly lockFile 89730964-ngrok-0-1-8 ngrok@0.1.8
+96 silly lockFile 89730964-ngrok-0-1-8 ngrok@0.1.8
+97 silly lockFile ccf7dd4b-ngrok ngrok@
+98 silly lockFile ccf7dd4b-ngrok ngrok@
+99 silly resolved [ { name: 'ngrok',
+99 silly resolved     version: '0.1.8',
+99 silly resolved     description: 'node wrapper for ngrok',
+99 silly resolved     main: 'index.js',
+99 silly resolved     scripts:
+99 silly resolved      { test: 'node ./node_modules/mocha/bin/_mocha',
+99 silly resolved        postinstall: 'node ./postinstall.js',
+99 silly resolved        postupdate: 'node ./postinstall.js' },
+99 silly resolved     repository: { type: 'git', url: 'git://github.com/bubenshchykov/ngrok.git' },
+99 silly resolved     keywords: [ 'ngrok', 'localhost', 'tunneling', 'localtunnel', 'webhook' ],
+99 silly resolved     author: { name: 'bubenshchykov' },
+99 silly resolved     license: 'BSD-2-Clause',
+99 silly resolved     bugs: { url: 'https://github.com/bubenshchykov/ngrok/issues' },
+99 silly resolved     devDependencies: { mocha: '~1.14.0', chai: '~1.8.1', request: '~2.27.0' },
+99 silly resolved     dependencies: { unzip: '~0.1.9' },
+99 silly resolved     readme: 'ngrok [![Build Status](https://travis-ci.org/bubenshchykov/ngrok.png?branch=master)](https://travis-ci.org/bubenshchykov/ngrok)\n=====\n\nSimple node wrapper for ngrok client. Ngrok exposes your localhost to the web. https://ngrok.com/\n```shell\n$ npm install ngrok\n```\nNote, it will download the newest ngrok binary based on your platform and put it into the bin folder.\nusage\n====\nJust require ngrok and call connect method with a port and callback function:\n\n```javascript\nvar ngrok = require(\'ngrok\');\n\nngrok.connect(8080, function (err, url) {\n\t// https://757c1652.ngrok.com -> 127.0.0.1:8080 \n});\n```\nOr you may want to use some of the advanced ngrok options like:\n```javascript\nvar ngrok = require(\'ngrok\');\n\nngrok.connect({\n\tauthtoken: \'your-token\',\n\tsubdomain: \'susanna\',\n\thttpauth: \'user:pwd\',\n\tport: 8080\n}, function (err, url) {\n\t// https://susanna.ngrok.com -> 127.0.0.1:8080 with http auth required\n});\n```\n\nOr even create a tunnel that works based on protocols other then http.\n```javascript\nvar ngrok = require(\'ngrok\');\n\n// create tunnel for your local amqp setup\nngrok.connect({\n\t// http is the default protocol (and you should use it for the https\n\t// support) but tcp will work for everything else.\n\tproto: \'tcp\',\n\tauthtoken: \'your-token\',\n\tport: 5672\n}, function (err, url) {\n\t// tcp://abcd.ngrok.com:60234 -> 127.0.0.1:5762\n});\n```\n\nWhen tunnel is established you can use the ngrok interface http://127.0.0.1:4040 to inspect the webhooks done via ngrok.\n\nThe tunnel will be killed when node process is done. For manual shutdown use\n\n```javascript\nngrok.disconnect();\n```\nevent emitter\n=====\n\nAlso you can use ngrok as an event emitter, it fires "connect", "disconnect" and "error" events\n```javascript\nngrok.once(\'connect\', function (url) {\n\tconsole.log(\'got a tunnel url\', url);\n});\n\nngrok.connect(port);\n```\n\nnext\n=====\n* add support for ngrok config file and running multiple ngrok clients\n* add negative tests\n* rewrite entire ngrok client with node :)\n',
+99 silly resolved     readmeFilename: 'README.md',
+99 silly resolved     homepage: 'https://github.com/bubenshchykov/ngrok',
+99 silly resolved     _id: 'ngrok@0.1.8',
+99 silly resolved     dist: { shasum: '5e7d0528ad0951ff9aa4142d7744fc54ec559e76' },
+99 silly resolved     _from: 'ngrok@',
+99 silly resolved     _resolved: 'https://registry.npmjs.org/ngrok/-/ngrok-0.1.8.tgz' } ]
+100 info install ngrok@0.1.8 into /usr/local/lib
+101 info installOne ngrok@0.1.8
+102 info /usr/local/lib/node_modules/ngrok unbuild
+103 verbose tar unpack /Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+104 silly lockFile 2b350bb0-usr-local-lib-node-modules-ngrok tar:///usr/local/lib/node_modules/ngrok
+105 verbose lock tar:///usr/local/lib/node_modules/ngrok /Users/spk_mac/.npm/2b350bb0-usr-local-lib-node-modules-ngrok.lock
+106 silly lockFile 50de16bc--mac-npm-ngrok-0-1-8-package-tgz tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz
+107 verbose lock tar:///Users/spk_mac/.npm/ngrok/0.1.8/package.tgz /Users/spk_mac/.npm/50de16bc--mac-npm-ngrok-0-1-8-package-tgz.lock
+108 silly gunzTarPerm modes [ '755', '644' ]
+109 error Error: EACCES, mkdir '/usr/local/lib/node_modules/ngrok'
+109 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/ngrok']
+109 error   errno: 3,
+109 error   code: 'EACCES',
+109 error   path: '/usr/local/lib/node_modules/ngrok',
+109 error   fstream_type: 'Directory',
+109 error   fstream_path: '/usr/local/lib/node_modules/ngrok',
+109 error   fstream_class: 'DirWriter',
+109 error   fstream_stack:
+109 error    [ 'DirWriter._create (/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23)',
+109 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+109 error      'Object.oncomplete (fs.js:297:15)' ] }
+110 error Please try running this command again as root/Administrator.
+111 error System Darwin 13.1.0
+112 error command "node" "/usr/local/bin/npm" "install" "-g" "ngrok"
+113 error cwd /Users/spk_mac/repos/retsly-js-leads
+114 error node -v v0.8.23
+115 error npm -v 1.4.3
+116 error path /usr/local/lib/node_modules/ngrok
+117 error fstream_path /usr/local/lib/node_modules/ngrok
+118 error fstream_type Directory
+119 error fstream_class DirWriter
+120 error code EACCES
+121 error errno 3
+122 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/ngrok'
+123 error fstream_stack DirWriter._create (/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23)
+123 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+123 error fstream_stack Object.oncomplete (fs.js:297:15)
+124 verbose exit [ 3, true ]
