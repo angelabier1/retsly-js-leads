@@ -1,1 +1,20 @@
-yo
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lead box demo</title>
+    <script type='text/javascript' src='./build/build.js'></script>
+    <link rel="stylesheet" type="text/css" href="./build/build.css" />
+  </head>
+  <body>  
+
+    <script type='text/javascript'>
+      var $ = require('jquery');
+      $(document).ready(function() {
+        var Leads = require('retsly-leads');
+        var l = new Leads.ContactForm({ el: '#test' });
+      });
+    </script>
+    <div id='test'></div>
+
+  </body>
+</html>
