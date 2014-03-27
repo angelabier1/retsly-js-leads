@@ -8,7 +8,6 @@
     "components/jquery": "1.10.2",
     "jashkenas/underscore": "*",
     "jashkenas/backbone": "*",
-    "retsly/retsly-js-sdk": "*",
     "slajax/validate-form": "*"
   },
   "development": {},

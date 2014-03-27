@@ -4,15 +4,25 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Retsly = require('retsly-sdk');
 var template = require('./templates/template');
 var validate = require('validate-form');
 var token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
+var stgUrl = 'https://stg.rets.io:443';
+var devUrl = 'https://dev.rets.io:443';
+var productionUrl = 'https://rets.io:443';
+
+var domain = productionUrl;
+if (~document.domain.indexOf('dev.rets')) domain = devUrl;
+if (~document.domain.indexOf('stg.rets')) domain = stgUrl;
+if (~document.domain.indexOf('localhost')) domain = devUrl;
 
 Backbone.$ = $;
 
 var Components = {};
 
+/**
+ * Sets up the backbone view and pushes in the template.
+ */
 Components.ContactForm = Backbone.View.extend({
 
   events: {
@@ -40,19 +50,19 @@ Components.ContactForm = Backbone.View.extend({
 
     this.form.validateAll(function(err, valid, msg) {
       if(!valid) {
-        return this.alert('The form is not complete, please try again', 'error');
+        return this.alert('Please complete the required fields in the form', 'error');
       }
       else {
-        var data = $('form').serialize();
+        var data = $('#lead').serialize();
         $.ajax({
           type: 'POST',
           data: data,
-          url: "https://dev.rets.io/api/v1/lead/create?access_token="+token,
+          url: domain+"/api/v1/lead/create?access_token="+token,
           beforeSend: function( xhr ) {
             xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
-          }
+          },
+          error: function (xhr,err) {throw new Error(err)}
         });
-
       }
     });
   },
