@@ -6,10 +6,13 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 var template = require('./templates/template');
 var validate = require('validate-form');
+var Retsly = require('retsly-sdk');
 var token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
 var stgUrl = 'https://stg.rets.io:443';
 var devUrl = 'https://dev.rets.io:443';
 var productionUrl = 'https://rets.io:443';
+
+var retsly = Retsly.create(token, {debug: true});
 
 var domain = productionUrl;
 if (~document.domain.indexOf('dev.rets')) domain = devUrl;
