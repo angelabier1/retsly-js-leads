@@ -61,8 +61,11 @@ Components.ContactForm = Backbone.View.extend({
           type: 'POST',
           data: data,
           url: domain+"/api/v1/lead/create?access_token="+token,
+          xhrFields: { withCredentials: true },
+	  crossDomain: true,
           beforeSend: function( xhr ) {
-            xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+            xhr.withCredentials = true;
+	    xhr.setRequestHeader("cookie", document.cookie);
           },
           error: function (xhr,err) {throw new Error(err)}
         });
