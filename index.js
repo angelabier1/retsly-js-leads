@@ -32,6 +32,9 @@ Components.ContactForm = Backbone.View.extend({
     this.$el.html(template);
   },
 
+  /**
+   * submit form only when validations pass.
+   */
   submit: function(evt) {
 
     evt.preventDefault();
@@ -44,7 +47,7 @@ Components.ContactForm = Backbone.View.extend({
       }
       else {
         $('#lead').get(0).setAttribute('action', 'https://dev.rets.io/api/v1/lead/create?access_token=' + token);
-        $('#lead').submit()
+        $('#lead').submit();
       }
     });
   },

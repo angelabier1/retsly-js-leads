@@ -3,7 +3,7 @@ label.validator-message {
 }
 
 #lead {
-    width: 400px;
+    width: 280px;
     /*margin-right: auto;
     margin-left: auto;*/
     background: #EEE;
@@ -72,7 +72,26 @@ label.validator-message {
     border: none;
     padding: 10px 25px 10px 25px;
     color: #FFF;
+    border-radius: 5px;
 }
 #lead .button:hover {
     background: #CF7A7A
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+ 
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
 }
