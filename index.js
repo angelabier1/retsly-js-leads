@@ -9,8 +9,6 @@ var template = require('./templates/template');
 var validate = require('validate-form');
 var token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
 
-//var retsly = Retsly.create('5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW', { debug: true });
-
 Backbone.$ = $;
 
 var Components = {};
@@ -38,7 +36,6 @@ Components.ContactForm = Backbone.View.extend({
   submit: function(evt) {
 
     evt.preventDefault();
-
     this.validateform();
 
     this.form.validateAll(function(err, valid, msg) {
@@ -46,8 +43,16 @@ Components.ContactForm = Backbone.View.extend({
         return this.alert('The form is not complete, please try again', 'error');
       }
       else {
-        $('#lead').get(0).setAttribute('action', 'https://dev.rets.io/api/v1/lead/create?access_token=' + token);
-        $('#lead').submit();
+        var data = $('form').serialize();
+        $.ajax({
+          type: 'POST',
+          data: data,
+          url: "https://dev.rets.io/api/v1/lead/create?access_token="+token,
+          beforeSend: function( xhr ) {
+            xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+          }
+        });
+
       }
     });
   },
