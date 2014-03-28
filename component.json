@@ -9,7 +9,8 @@
     "jashkenas/underscore": "*",
     "jashkenas/backbone": "*",
     "slajax/validate-form": "*",
-    "retsly/retsly-js-sdk": "*"
+    "retsly/retsly-js-sdk": "*",
+    "aliyazdani/jquery-cookie": "*"
   },
   "development": {},
   "license": "MIT",

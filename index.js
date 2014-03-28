@@ -2,6 +2,7 @@
  * Leads Component
  */
 var $ = require('jquery');
+require('jquery-cookie');
 var _ = require('underscore');
 var Backbone = require('backbone');
 var template = require('./templates/template');
@@ -46,6 +47,24 @@ Components.ContactForm = Backbone.View.extend({
 
     $(opts.el).append(this.$el);
     this.$el.html(template);
+
+    checkCookie();
+
+    /**
+     * Checks to see if cookie has been set with
+     * name, tel, email and loads it into form
+     */
+    function checkCookie() {
+      if($.cookie('name')) {
+        $('#name').val($.cookie('name'));
+      }
+      if($.cookie('email')) {
+        $('#email').val($.cookie('email'));
+      }
+      if($.cookie('phone')) {
+        $('#tel').val($.cookie('phone'));
+      }
+    }
   },
 
   /**
@@ -54,6 +73,7 @@ Components.ContactForm = Backbone.View.extend({
   submit: function(evt) {
 
     evt.preventDefault();
+
     this.validateform();
 
     this.form.validateAll(function(err, valid, msg) {
@@ -72,15 +92,14 @@ Components.ContactForm = Backbone.View.extend({
 	        crossDomain: true,
           beforeSend: function( xhr ) {
             xhr.withCredentials = true;
-	          //xhr.setRequestHeader("cookie", document.cookie);
           },
           success: function(res) {
-            console.log('res', res.bundle.name);
+            $.cookie('name', res.bundle.name);
+            $.cookie('phone', res.bundle.phone);
+            $.cookie('email', res.bundle.email);
           },
           error: function (xhr,err) {throw new Error(err)}
         });
-
-
       }
     });
   },
@@ -90,7 +109,7 @@ Components.ContactForm = Backbone.View.extend({
     var form = $('#lead')[0];
 
     this.form = validate(form)
-      .on('blur')
+      .on('all')
       .set({ validateEmpty: true })
 
       .field('name')
