@@ -12,12 +12,17 @@ var stgUrl = 'https://stg.rets.io:443';
 var devUrl = 'https://dev.rets.io:443';
 var productionUrl = 'https://rets.io:443';
 
-var retsly = Retsly.create(token, {debug: true});
+Retsly.prototype.getDomain = function() {
+  return 'https://dev.rets.io:443';
+};
+
+var retsly = Retsly.create(token, {debug: true}); 
 
 var domain = productionUrl;
 if (~document.domain.indexOf('dev.rets')) domain = devUrl;
 if (~document.domain.indexOf('stg.rets')) domain = stgUrl;
 if (~document.domain.indexOf('localhost')) domain = devUrl;
+domain = 'https://dev.rets.io';
 
 Backbone.$ = $;
 
@@ -56,19 +61,26 @@ Components.ContactForm = Backbone.View.extend({
         return this.alert('Please complete the required fields in the form', 'error');
       }
       else {
+        console.log('im in else');
         var data = $('#lead').serialize();
+
         $.ajax({
           type: 'POST',
           data: data,
-          url: domain+"/api/v1/lead/create?access_token="+token,
+          url: domain+"/api/v1/lead/create?access_token="+token+"&origin=http://"+document.domain,
           xhrFields: { withCredentials: true },
-	  crossDomain: true,
+	        crossDomain: true,
           beforeSend: function( xhr ) {
             xhr.withCredentials = true;
-	    xhr.setRequestHeader("cookie", document.cookie);
+	          //xhr.setRequestHeader("cookie", document.cookie);
+          },
+          success: function(res) {
+            console.log('res', res.bundle.name);
           },
           error: function (xhr,err) {throw new Error(err)}
         });
+
+
       }
     });
   },
