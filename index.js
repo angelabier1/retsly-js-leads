@@ -87,7 +87,7 @@ Components.ContactForm = Backbone.View.extend({
         $.ajax({
           type: 'POST',
           data: data,
-          url: domain+"/api/v1/lead/create?access_token="+token+"&origin=http://"+document.domain,
+          url: domain+"/api/v1/lead/?access_token="+token+"&origin=http://"+document.domain,
           xhrFields: { withCredentials: true },
 	        crossDomain: true,
           beforeSend: function( xhr ) {
