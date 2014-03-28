@@ -41,7 +41,7 @@ label.validator-message {
     margin-top: 10px;
     color: #888;
 }
-#lead input[type="text"], .basic-grey input[type="email"], .basic-grey textarea,.basic-grey select{
+#lead input[type="text"], input[type="email"], textarea, select{
     border: 1px solid #DADADA;
     color: #888;
     height: 24px;
@@ -54,8 +54,8 @@ label.validator-message {
     font: normal 12px/12px Georgia, "Times New Roman", Times, serif;
 }
 #lead select {
-    background: #FFF url('down-arrow.png') no-repeat right;
-    background: #FFF url('down-arrow.png') no-repeat right);
+    background: #FFF;
+    background: #FFF;
     appearance:none;
     -webkit-appearance:none; 
     -moz-appearance: none;

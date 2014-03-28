@@ -2,7 +2,7 @@
  * Leads Component
  */
 var $ = require('jquery');
-require('jquery-cookie');
+require('jquery.cookie');
 var _ = require('underscore');
 var Backbone = require('backbone');
 var template = require('./templates/template');
@@ -55,6 +55,7 @@ Components.ContactForm = Backbone.View.extend({
      * name, tel, email and loads it into form
      */
     function checkCookie() {
+
       if($.cookie('name')) {
         $('#name').val($.cookie('name'));
       }
@@ -81,7 +82,6 @@ Components.ContactForm = Backbone.View.extend({
         return this.alert('Please complete the required fields in the form', 'error');
       }
       else {
-        console.log('im in else');
         var data = $('#lead').serialize();
 
         $.ajax({
