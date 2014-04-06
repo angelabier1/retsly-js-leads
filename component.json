@@ -12,7 +12,10 @@
     "retsly/retsly-js-sdk": "*",
     "aliyazdani/jquery-cookie": "*"
   },
-  "development": {},
+  "development": {
+    "timoxley/assert": "*",
+    "visionmedia/mocha": "1.14.0"
+  },
   "license": "MIT",
   "main": "index.js",
   "scripts": [

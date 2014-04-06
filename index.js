@@ -9,12 +9,12 @@ var template = require('./templates/template');
 var validate = require('validate-form');
 var Retsly = require('retsly-sdk');
 var token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
-var stgUrl = 'https://stg.rets.io:443';
-var devUrl = 'https://dev.rets.io:443';
-var productionUrl = 'https://rets.io:443';
+var stgUrl = 'https://stg.rets.io';
+var devUrl = 'https://dev.rets.io';
+var productionUrl = 'https://rets.io';
 
 Retsly.prototype.getDomain = function() {
-  return 'https://dev.rets.io:443';
+  return 'https://dev.rets.io';
 };
 
 var retsly = Retsly.create(token, {debug: true}); 
@@ -98,7 +98,7 @@ Components.ContactForm = Backbone.View.extend({
             $.cookie('phone', res.bundle.phone);
             $.cookie('email', res.bundle.email);
           },
-          error: function (xhr,err) {throw new Error(err)}
+          error: function (xhr,err) {throw new Error(err);}
         });
       }
     });
