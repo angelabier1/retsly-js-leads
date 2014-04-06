@@ -1,14 +1,17 @@
 
-build: components index.js retsly-js-leads.css template.js
+build: components
 	@component build --dev
 
-template.js: template.html
+template: template.html
 	@component convert $<
 
 components: component.json
 	@component install --dev
 
-clean:
-	rm -fr build components template.js
+test: build 
+	@mocha-phantomjs test/test.html
 
-.PHONY: clean
+clean:
+	rm -fr build components template
+
+.PHONY: clean test

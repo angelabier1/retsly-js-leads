@@ -1,0 +1,97 @@
+label.validator-message {
+  color: red;
+}
+
+#lead {
+    width: 250px;
+    /*margin-right: auto;
+    margin-left: auto;*/
+    background: #EEE;
+    padding: 20px 30px 20px 30px;
+    font: 12px Georgia, "Times New Roman", Times, serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #DADADA;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-shadow: 2px 2px 2px #888888;
+}
+#lead h1 {
+    font: 20px Georgia, "Times New Roman", Times, serif;
+    padding: 0px 0px 10px 40px;
+    display: block;
+    border-bottom: 1px solid #DADADA;
+    margin: -10px -30px 30px -30px;
+    color: #888;
+}
+#lead h1>span {
+    display: block;
+    font-size: 11px;
+}
+#lead label {
+    display: block;
+    margin: 0px 0px 5px;
+}
+#lead label>span {
+    float: left;
+    width: 80px;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #888;
+}
+#lead input[type="text"], input[type="email"], textarea, select{
+    border: 1px solid #DADADA;
+    color: #888;
+    height: 24px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 70%;
+    font: normal 12px/12px Georgia, "Times New Roman", Times, serif;
+}
+#lead select {
+    background: #FFF;
+    background: #FFF;
+    appearance:none;
+    -webkit-appearance:none; 
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 72%;
+    height: 30px;
+}
+#lead textarea{
+    height:100px;
+}
+#lead .button {
+    background: #E48F8F;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    border-radius: 5px;
+}
+#lead .button:hover {
+    background: #CF7A7A
+}
+
+input[type=text], textarea {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+ 
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}
