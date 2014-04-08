@@ -13,8 +13,10 @@
       $(document).ready(function() {
         var opts = {};
         opts.domain = 'https://dev.rets.io';
-        opts.token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
         opts.retsly = new Retsly('5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW', { debug: true });
+        opts.agent_id = "532d4cc58b0b042a02aeb469";
+        opts.vendor_id = "test";
+        opts.listing_id = "532d4cc68b0b042a02aebd38";
         var Leads = require('retsly-leads')(opts);
         var l = new Leads.ContactForm({ el: '#test' });
     
