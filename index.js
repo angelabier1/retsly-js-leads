@@ -7,123 +7,111 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 var template = require('./templates/template');
 var validate = require('validate-form');
-var Retsly = require('retsly-sdk');
-var token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
-var stgUrl = 'https://stg.rets.io';
-var devUrl = 'https://dev.rets.io';
-var productionUrl = 'https://rets.io';
-
-Retsly.prototype.getDomain = function() {
-  return 'https://dev.rets.io';
-};
-
-var retsly = Retsly.create(token, {debug: true}); 
-
-var domain = productionUrl;
-if (~document.domain.indexOf('dev.rets')) domain = devUrl;
-if (~document.domain.indexOf('stg.rets')) domain = stgUrl;
-if (~document.domain.indexOf('localhost')) domain = devUrl;
-domain = 'https://dev.rets.io';
 
 Backbone.$ = $;
 
-var Components = {};
+module.exports = function(opts) {
 
-/**
- * Sets up the backbone view and pushes in the template.
- */
-Components.ContactForm = Backbone.View.extend({
-
-  events: {
-    'click input[type=submit]': 'submit'
-  },
-
-  initialize: function(opts){
-
-    var opts = $.merge(opts, {});
-
-    if(!opts || typeof opts === 'undefined')
-      throw new Error('form could not be loaded');
-
-    $(opts.el).append(this.$el);
-    this.$el.html(template);
-
-    checkCookie();
-
-    /**
-     * Checks to see if cookie has been set with
-     * name, tel, email and loads it into form
-     */
-    function checkCookie() {
-
-      if($.cookie('name')) {
-        $('#name').val($.cookie('name'));
-      }
-      if($.cookie('email')) {
-        $('#email').val($.cookie('email'));
-      }
-      if($.cookie('phone')) {
-        $('#tel').val($.cookie('phone'));
-      }
-    }
-  },
+  var Components = {};
+  var domain = opts.domain;
+  var token = opts.token;
+  var retsly = opts.retsly;
 
   /**
-   * submit form only when validations pass.
+   * Sets up the backbone view and pushes in the template.
    */
-  submit: function(evt) {
+  Components.ContactForm = Backbone.View.extend({
 
-    evt.preventDefault();
+    events: {
+      'click input[type=submit]': 'submit'
+    },
 
-    this.validateform();
+    initialize: function(opts){
 
-    this.form.validateAll(function(err, valid, msg) {
-      if(!valid) {
-        return this.alert('Please complete the required fields in the form', 'error');
+      var opts = $.merge(opts, {});
+
+      if(!opts || typeof opts === 'undefined')
+        throw new Error('form could not be loaded');
+
+      $(opts.el).append(this.$el);
+      this.$el.html(template);
+
+      checkCookie();
+
+      /**
+       * Checks to see if cookie has been set with
+       * name, tel, email and loads it into form
+       */
+      function checkCookie() {
+
+        if($.cookie('name')) {
+          $('#name').val($.cookie('name'));
+        }
+        if($.cookie('email')) {
+          $('#email').val($.cookie('email'));
+        }
+        if($.cookie('phone')) {
+          $('#tel').val($.cookie('phone'));
+        }
       }
-      else {
-        var data = $('#lead').serialize();
+    },
 
-        $.ajax({
-          type: 'POST',
-          data: data,
-          url: domain+"/api/v1/lead/?access_token="+token+"&origin=http://"+document.domain,
-          xhrFields: { withCredentials: true },
-	        crossDomain: true,
-          beforeSend: function( xhr ) {
-            xhr.withCredentials = true;
-          },
-          success: function(res) {
-            $.cookie('name', res.bundle.name);
-            $.cookie('phone', res.bundle.phone);
-            $.cookie('email', res.bundle.email);
-          },
-          error: function (xhr,err) {throw new Error(err);}
-        });
-      }
-    });
-  },
+    /**
+     * submit form only when validations pass.
+     */
+    submit: function(evt) {
 
-  validateform: function(){
+      evt.preventDefault();
 
-    var form = $('#lead')[0];
+      this.validateform();
 
-    this.form = validate(form)
-      .on('all')
-      .set({ validateEmpty: true })
+      this.form.validateAll(function(err, valid, msg) {
+        if(!valid) {
+          return this.alert('Please complete the required fields in the form', 'error');
+        }
+        else {
+          var data = $('#lead').serialize();
 
-      .field('name')
-        .is('required', 'Name field cannot be empty')
+          $.ajax({
+            type: 'POST',
+            data: data,
+            url: domain+"/api/v1/lead/?access_token="+token+"&origin=http://"+document.domain,
+            xhrFields: { withCredentials: true },
+  	        crossDomain: true,
+            beforeSend: function( xhr ) {
+              xhr.withCredentials = true;
+            },
+            success: function(res) {
+              $.cookie('name', res.bundle.name);
+              $.cookie('phone', res.bundle.phone);
+              $.cookie('email', res.bundle.email);
+            },
+            error: function (xhr,err) {throw new Error(err);}
+          });
+        }
+      });
+    },
 
-      .field('email')
-        .is('required', 'Email field cannot be empty')
-        .is('email', 'please enter a valid email')
+    validateform: function(){
 
-      .field('phone')
-        .is('required', 'Tel# field cannot be empty');
+      var form = $('#lead')[0];
 
-    return this;
-  }
-});
+      this.form = validate(form)
+        .on('all')
+        .set({ validateEmpty: true })
 
-module.exports = Components;
+        .field('name')
+          .is('required', 'Name field cannot be empty')
+
+        .field('email')
+          .is('required', 'Email field cannot be empty')
+          .is('email', 'please enter a valid email')
+
+        .field('phone')
+          .is('required', 'Tel# field cannot be empty');
+
+      return this;
+    }
+  });
+  return Components;
+};

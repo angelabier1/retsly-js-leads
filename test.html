@@ -9,9 +9,15 @@
 
     <script type='text/javascript'>
       var $ = require('jquery');
+      var Retsly = require('retsly-sdk');
       $(document).ready(function() {
-        var Leads = require('retsly-leads');
+        var opts = {};
+        opts.domain = 'https://dev.rets.io';
+        opts.token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
+        opts.retsly = new Retsly('5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW', { debug: true });
+        var Leads = require('retsly-leads')(opts);
         var l = new Leads.ContactForm({ el: '#test' });
+    
       });
     </script>
     <div id='test'></div>
