@@ -3,13 +3,13 @@
   <h1>Contact Me</h1>
 
   <label for="name">Full Name*</label>
-  <input type="text" id="name" name="name" placeholder="Bo Jackson"><br/>
+  <input type="text" id="namefield" name="name" placeholder="Bo Jackson"><br/>
   
   <label for="email">Email*</label>
-  <input type="text" id="email" name="email" placeholder="name@mydomain.com"><br/>
+  <input type="text" id="emailfield" name="email" placeholder="name@mydomain.com"><br/>
   
   <label for="tel">Tel#*</label>
-  <input type="text" id="tel" name="phone" placeholder="555-555-5555"><br/>
+  <input type="text" id="telfield" name="phone" placeholder="555-555-5555"><br/>
   
   <label for="contact-time">Best Time to contact you</label>
   <select id="contact-time" name="contact_time">
@@ -27,14 +27,9 @@
     <option value="Fri afternoon">Fri afternoon</option>
   </select>
 
-  <label for="listingID">ListingID</label>
-  <input type="text" id="listingID" name="listingID" value="532d4cc68b0b042a02aebd38">
-
-  <label for="vendorID">vendorID</label>
-  <input type="text" id="vendorID" name="vendorID" value="test">
-
-  <label for="agentID">agentID</label>
-  <input type="text" id="agentID" name="agentID" value="532d4cc58b0b042a02aeb469">
+  <input type="hidden" id="listing_id" name="listingID" value="">
+  <input type="hidden" id="vendor_id" name="vendorID" value="">
+  <input type="hidden" id="agent_id" name="agentID" value="">
 
   <input type="submit" class="button" value="Submit">
 </form>

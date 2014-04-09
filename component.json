@@ -10,7 +10,7 @@
     "jashkenas/backbone": "*",
     "slajax/validate-form": "*",
     "retsly/retsly-js-sdk": "*",
-    "aliyazdani/jquery-cookie": "*"
+    "retsly/jquery-cookie": "*"
   },
   "development": {
     "timoxley/assert": "*",

@@ -1,129 +1,133 @@
 /**
- * Leads Component
+ * Dependencies
  */
-var $ = require('jquery');
+var $ = require('jquery')
+  , _ = require('underscore')
+  , Backbone = require('backbone')
+  , validate = require('validate-form')
+  , template = require('./templates/template');
+  
 require('jquery.cookie');
-var _ = require('underscore');
-var Backbone = require('backbone');
-var template = require('./templates/template');
-var validate = require('validate-form');
-var Retsly = require('retsly-sdk');
-var token = '5OylUxE1Z3T8u3Fbcy8LLUJeao5IidzW';
-var stgUrl = 'https://stg.rets.io';
-var devUrl = 'https://dev.rets.io';
-var productionUrl = 'https://rets.io';
-
-Retsly.prototype.getDomain = function() {
-  return 'https://dev.rets.io';
-};
-
-var retsly = Retsly.create(token, {debug: true}); 
-
-var domain = productionUrl;
-if (~document.domain.indexOf('dev.rets')) domain = devUrl;
-if (~document.domain.indexOf('stg.rets')) domain = stgUrl;
-if (~document.domain.indexOf('localhost')) domain = devUrl;
-domain = 'https://dev.rets.io';
-
 Backbone.$ = $;
 
-var Components = {};
+module.exports = function(opts) {
 
-/**
- * Sets up the backbone view and pushes in the template.
- */
-Components.ContactForm = Backbone.View.extend({
+  if(!opts) throw new Error('no options passed into retsly-js-leads');
+  if(!opts.domain) throw new Error('no domain passed into retsly-js-leads');
+  if(!opts.agent_id) throw new Error('no agent_id passed into retsly-js-leads');
+  if(!opts.vendor_id) throw new Error('no vendor_id passed into retsly-js-leads');
+  if(!opts.listing_id) throw new Error('no listing_id passed into retsly-js-leads');
+  if(!opts.retsly) throw new Error('no instance of Retsly passed into retsly-js-leads');
 
-  events: {
-    'click input[type=submit]': 'submit'
-  },
-
-  initialize: function(opts){
-
-    var opts = $.merge(opts, {});
-
-    if(!opts || typeof opts === 'undefined')
-      throw new Error('form could not be loaded');
-
-    $(opts.el).append(this.$el);
-    this.$el.html(template);
-
-    checkCookie();
-
-    /**
-     * Checks to see if cookie has been set with
-     * name, tel, email and loads it into form
-     */
-    function checkCookie() {
-
-      if($.cookie('name')) {
-        $('#name').val($.cookie('name'));
-      }
-      if($.cookie('email')) {
-        $('#email').val($.cookie('email'));
-      }
-      if($.cookie('phone')) {
-        $('#tel').val($.cookie('phone'));
-      }
-    }
-  },
+  var Components = {};
+  var domain = opts.domain;
+  var retsly = opts.retsly;
+  var token = retsly.client_id;
+  var agent_id = opts.agent_id;
+  var vendor_id = opts.vendor_id;
+  var listing_id = opts.listing_id;
 
   /**
-   * submit form only when validations pass.
+   * Sets up the backbone view and pushes in the template.
    */
-  submit: function(evt) {
+  Components.ContactForm = Backbone.View.extend({
 
-    evt.preventDefault();
+    events: {
+      'click input[type=submit]': 'submit'
+    },
 
-    this.validateform();
+    initialize: function(opts){
 
-    this.form.validateAll(function(err, valid, msg) {
-      if(!valid) {
-        return this.alert('Please complete the required fields in the form', 'error');
+      var opts = $.merge(opts, {});
+      if(!opts || typeof opts === 'undefined')
+        throw new Error('form could not be loaded into retsly-js-leads');
+      if(!opts.el) throw new Error('no page el passed into retsly-js-leads');
+
+      $(opts.el).append(this.$el);
+      this.$el.html(template);
+      var thisElement = this.$el;
+
+      checkCookie(thisElement);
+
+      /**
+       * Checks to see if cookie has been set with
+       * name, tel, email and loads it into form
+       */
+      function checkCookie() {
+
+        if($.cookie('name')) {
+          thisElement.find('#namefield').val($.cookie('name'));
+        }
+        if($.cookie('email')) {
+          thisElement.find('#emailfield').val($.cookie('email'));
+        }
+        if($.cookie('phone')) {
+          thisElement.find('#telfield').val($.cookie('phone'));
+        }
       }
-      else {
-        var data = $('#lead').serialize();
+    },
 
-        $.ajax({
-          type: 'POST',
-          data: data,
-          url: domain+"/api/v1/lead/?access_token="+token+"&origin=http://"+document.domain,
-          xhrFields: { withCredentials: true },
-	        crossDomain: true,
-          beforeSend: function( xhr ) {
-            xhr.withCredentials = true;
-          },
-          success: function(res) {
-            $.cookie('name', res.bundle.name);
-            $.cookie('phone', res.bundle.phone);
-            $.cookie('email', res.bundle.email);
-          },
-          error: function (xhr,err) {throw new Error(err);}
-        });
-      }
-    });
-  },
+    /**
+     * submit form only when validations pass.
+     */
+    submit: function(evt) {
 
-  validateform: function(){
+      evt.preventDefault();
+      this.validateform();
 
-    var form = $('#lead')[0];
+      $('form #listing_id').val(opts.listing_id);
+      $('form #vendor_id').val(opts.vendor_id);
+      $('form #agent_id').val(opts.agent_id);
 
-    this.form = validate(form)
-      .on('all')
-      .set({ validateEmpty: true })
+      this.form.validateAll(function(err, valid, msg) {
+        if(!valid) {
+          return this.alert('Please complete the required fields in the form', 'error');
+        }
+        else {
+          var data = $('#lead').serialize();
+          var url = domain+"/api/v1/lead/?access_token="+token+"&origin=http://"+document.domain;
 
-      .field('name')
-        .is('required', 'Name field cannot be empty')
+          $.ajax({
+            type: 'POST',
+            data: data,
+            url: url,
+            xhrFields: { withCredentials: true },
+  	        crossDomain: true,
+            beforeSend: function( xhr ) {
+              xhr.withCredentials = true;
+            },
+            success: function(res) {
+              $.cookie('name', res.bundle.name);
+              $.cookie('phone', res.bundle.phone);
+              $.cookie('email', res.bundle.email);
+            },
+            error: function (xhr,err) {throw new Error(err);}
+          });
 
-      .field('email')
-        .is('required', 'Email field cannot be empty')
-        .is('email', 'please enter a valid email')
+        }
+      });
+    },
 
-      .field('phone')
-        .is('required', 'Tel# field cannot be empty');
+    validateform: function(){
 
-    return this;
-  }
-});
+      var form = $('#lead')[0];
 
-module.exports = Components;
+      this.form = validate(form)
+        .on('all')
+        .set({ validateEmpty: true })
+
+        .field('name')
+          .is('required', 'Name field cannot be empty')
+
+        .field('email')
+          .is('required', 'Email field cannot be empty')
+          .is('email', 'please enter a valid email')
+
+        .field('phone')
+          .is('required', 'Tel# field cannot be empty');
+
+      return this;
+    }
+  });
+  return Components;
+};
