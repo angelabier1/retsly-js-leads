@@ -12,12 +12,12 @@ Backbone.$ = $;
 
 module.exports = function(opts) {
 
-  if(!opts) throw new Error('no options passed in');
-  if(!opts.domain) throw new Error('no domain passed in');
-  if(!opts.agent_id) throw new Error('no agent_id passed in');
-  if(!opts.vendor_id) throw new Error('no vendor_id passed in');
-  if(!opts.listing_id) throw new Error('no listing_id passed in');
-  if(!opts.retsly) throw new Error('no instance of Retsly passed in');
+  if(!opts) throw new Error('no options passed into retsly-js-leads');
+  if(!opts.domain) throw new Error('no domain passed into retsly-js-leads');
+  if(!opts.agent_id) throw new Error('no agent_id passed into retsly-js-leads');
+  if(!opts.vendor_id) throw new Error('no vendor_id passed into retsly-js-leads');
+  if(!opts.listing_id) throw new Error('no listing_id passed into retsly-js-leads');
+  if(!opts.retsly) throw new Error('no instance of Retsly passed into retsly-js-leads');
 
   var Components = {};
   var domain = opts.domain;
@@ -40,13 +40,14 @@ module.exports = function(opts) {
 
       var opts = $.merge(opts, {});
       if(!opts || typeof opts === 'undefined')
-        throw new Error('form could not be loaded');
-      if(!opts.el) throw new Error('no page el passed in');
+        throw new Error('form could not be loaded into retsly-js-leads');
+      if(!opts.el) throw new Error('no page el passed into retsly-js-leads');
 
       $(opts.el).append(this.$el);
       this.$el.html(template);
+      var thisElement = this.$el;
 
-      checkCookie();
+      checkCookie(thisElement);
 
       /**
        * Checks to see if cookie has been set with
@@ -55,13 +56,13 @@ module.exports = function(opts) {
       function checkCookie() {
 
         if($.cookie('name')) {
-          $('#name').val($.cookie('name'));
+          thisElement.find('#namefield').val($.cookie('name'));
         }
         if($.cookie('email')) {
-          $('#email').val($.cookie('email'));
+          thisElement.find('#emailfield').val($.cookie('email'));
         }
         if($.cookie('phone')) {
-          $('#tel').val($.cookie('phone'));
+          thisElement.find('#telfield').val($.cookie('phone'));
         }
       }
     },
@@ -74,9 +75,9 @@ module.exports = function(opts) {
       evt.preventDefault();
       this.validateform();
 
-      $('form #listingID').val(opts.listing_id);
-      $('form #vendorID').val(opts.vendor_id);
-      $('form #agentID').val(opts.agent_id);
+      $('form #listing_id').val(opts.listing_id);
+      $('form #vendor_id').val(opts.vendor_id);
+      $('form #agent_id').val(opts.agent_id);
 
       this.form.validateAll(function(err, valid, msg) {
         if(!valid) {
