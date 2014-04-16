@@ -33,7 +33,8 @@ module.exports = function(opts) {
   Components.ContactForm = Backbone.View.extend({
 
     events: {
-      'click .send-button': 'submit'
+      'click .send-button': 'submit',
+      'click .addComment': 'showCommentBox'
     },
 
     initialize: function(opts){
@@ -65,6 +66,11 @@ module.exports = function(opts) {
           thisElement.find('#telfield').val($.cookie('phone'));
         }
       }
+    },
+
+    showCommentBox: function(e) {
+      $('#commentfield').slideToggle(150);
+            console.log('added acive');
     },
 
     /**
