@@ -33,7 +33,7 @@ module.exports = function(opts) {
   Components.ContactForm = Backbone.View.extend({
 
     events: {
-      'click input[type=submit]': 'submit'
+      'click .send-button': 'submit'
     },
 
     initialize: function(opts){
