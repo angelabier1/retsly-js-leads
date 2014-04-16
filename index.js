@@ -34,7 +34,7 @@ module.exports = function(opts) {
 
     events: {
       'click .send-button': 'submit',
-      'click .addComment': 'showCommentBox'
+      'click #commentSpan': 'showCommentBox'
     },
 
     initialize: function(opts){
@@ -70,7 +70,6 @@ module.exports = function(opts) {
 
     showCommentBox: function(e) {
       $('#commentfield').slideToggle(150);
-            console.log('added acive');
     },
 
     /**
