@@ -33,7 +33,8 @@ module.exports = function(opts) {
   Components.ContactForm = Backbone.View.extend({
 
     events: {
-      'click input[type=submit]': 'submit'
+      'click .send-button': 'submit',
+      'click #commentSpan': 'showCommentBox'
     },
 
     initialize: function(opts){
@@ -44,7 +45,7 @@ module.exports = function(opts) {
       if(!opts.el) throw new Error('no page el passed into retsly-js-leads');
 
       $(opts.el).append(this.$el);
-      this.$el.html(template);
+      this.$el.append(template);
       var thisElement = this.$el;
 
       checkCookie(thisElement);
@@ -65,6 +66,10 @@ module.exports = function(opts) {
           thisElement.find('#telfield').val($.cookie('phone'));
         }
       }
+    },
+
+    showCommentBox: function(e) {
+      $('#commentfield').slideToggle(150);
     },
 
     /**
