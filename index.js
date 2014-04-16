@@ -44,7 +44,7 @@ module.exports = function(opts) {
       if(!opts.el) throw new Error('no page el passed into retsly-js-leads');
 
       $(opts.el).append(this.$el);
-      this.$el.html(template);
+      this.$el.append(template);
       var thisElement = this.$el;
 
       checkCookie(thisElement);
