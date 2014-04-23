@@ -22,7 +22,6 @@ module.exports = function(opts) {
   var Components = {};
   var domain = opts.domain;
   var retsly = opts.retsly;
-  var token = retsly.client_id;
   var agent_id = opts.agent_id;
   var vendor_id = opts.vendor_id;
   var listing_id = opts.listing_id;
@@ -90,17 +89,11 @@ module.exports = function(opts) {
         }
         else {
           var data = $('#lead').serialize();
-          var url = domain+"/api/v1/lead/?access_token="+token+"&origin=http://"+document.domain;
-
+          var url = domain+'/leads';
           $.ajax({
             type: 'POST',
             data: data,
             url: url,
-            xhrFields: { withCredentials: true },
-  	        crossDomain: true,
-            beforeSend: function( xhr ) {
-              xhr.withCredentials = true;
-            },
             success: function(res) {
               $.cookie('name', res.bundle.name);
               $.cookie('phone', res.bundle.phone);
@@ -108,7 +101,6 @@ module.exports = function(opts) {
             },
             error: function (xhr,err) {throw new Error(err);}
           });
-
         }
       });
     },
