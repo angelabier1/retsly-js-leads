@@ -8,6 +8,12 @@ var ajax = require('ajax')
 var cookie = require('cookie')
 
 module.exports = function(opts) {
+  if(!opts) throw new Error('no options passed into retsly-js-leads')
+  if(!opts.domain) throw new Error('no domain passed into retsly-js-leads')
+  if(!opts.agent_id) throw new Error('no agent_id passed into retsly-js-leads')
+  if(!opts.vendor_id) throw new Error('no vendor_id passed into retsly-js-leads')
+  if(!opts.listing_id) throw new Error('no listing_id passed into retsly-js-leads')
+
   this.domain = opts.domain
   this.agent_id = opts.agent_id
   this.vendor_id = opts.vendor_id
@@ -20,15 +26,15 @@ module.exports = function(opts) {
   var Components = {}
 
   Components.ContactForm = function(el) {
+    if (!el) throw new Error('no el passed into retsly-js-leads#Contactform')
     this.el = el
-    // console.log('this.el', this.el)
 
     $(this.el).append(tpl())
 
 
     // events
     $('#commentSpan').on('click', function(e) {
-      $('#commentfield').slideToggle(150); //need an alternative.
+      $('#commentdiv').toggleClass('toggled')
     })
 
     $('.send-button').on('click', function(e) {
@@ -37,20 +43,20 @@ module.exports = function(opts) {
     })
 
     var thisElement = $('#lead')
-    checkCookie(thisElement);
+    checkCookie(thisElement)
 
     
     // preload input fields if cookie exists with name, email, phone
     function checkCookie() {
 
       if(cookie('name')) {
-        thisElement.find('#namefield').val(cookie('name'));
+        thisElement.find('#namefield').val(cookie('name'))
       }
       if(cookie('email')) {
-        thisElement.find('#emailfield').val(cookie('email'));
+        thisElement.find('#emailfield').val(cookie('email'))
       }
       if(cookie('phone')) {
-        thisElement.find('#telfield').val(cookie('phone'));
+        thisElement.find('#telfield').val(cookie('phone'))
       }
     }
 
@@ -59,15 +65,17 @@ module.exports = function(opts) {
       var name = $('#namefield').val()
       var tel = $('#telfield').val()
       var email = $('#emailfield').val()
+      var comment = $('#commentfield').val()
       var data = { name: name, 
                    phone: tel, 
-                   email: email, 
+                   email: email,
+                   comment: comment, 
                    listingID: this.listing_id, 
                    vendorID: this.vendor_id, 
                    agentID: this.agent_id 
                   }
 
-      var url = this.domain+'/leads';
+      var url = this.domain+'/leads'
 
       var val = validateform()
 
@@ -86,17 +94,13 @@ module.exports = function(opts) {
               cookie('email', responseObj.bundle.email)
             }
           })
-
-    }//else
-  })//validateall
-
-
+        }
+      })
     }
-
 
     function validateform() {
 
-      var form = $('#lead')[0];
+      var form = $('#lead')[0]
 
       this.form = validate(form)
         .on('all')
@@ -110,17 +114,10 @@ module.exports = function(opts) {
           .is('email', 'please enter a valid email')
 
         .field('phone')
-          .is('required', 'Tel# field cannot be empty');
+          .is('required', 'Tel# field cannot be empty')
 
-      return this;
+      return this
     }  
-
-
-
-
-
   }
-
-
-  return Components;
+  return Components
 }
