@@ -31,7 +31,6 @@ module.exports = function(opts) {
 
     $(this.el).append(tpl())
 
-
     // events
     $('#commentSpan').on('click', function(e) {
       $('#commentdiv').toggleClass('toggled')
@@ -45,10 +44,8 @@ module.exports = function(opts) {
     var thisElement = $('#lead')
     checkCookie(thisElement)
 
-    
     // preload input fields if cookie exists with name, email, phone
     function checkCookie() {
-
       if(cookie('name')) {
         thisElement.find('#namefield').val(cookie('name'))
       }
@@ -61,7 +58,6 @@ module.exports = function(opts) {
     }
 
     function submitForm() {
-
       var name = $('#namefield').val()
       var tel = $('#telfield').val()
       var email = $('#emailfield').val()
@@ -74,11 +70,9 @@ module.exports = function(opts) {
                    vendorID: this.vendor_id, 
                    agentID: this.agent_id 
                   }
-
       var url = this.domain+'/leads'
 
       var val = validateform()
-
       this.form.validateAll(function(err, valid, msg) {
         if(!valid) {
           return
@@ -99,7 +93,6 @@ module.exports = function(opts) {
     }
 
     function validateform() {
-
       var form = $('#lead')[0]
 
       this.form = validate(form)
