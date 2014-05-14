@@ -9,7 +9,6 @@
     "jashkenas/underscore": "*",
     "jashkenas/backbone": "*",
     "slajax/validate-form": "*",
-    "retsly/retsly-js-sdk": "*",
     "retsly/jquery-cookie": "*"
   },
   "development": {

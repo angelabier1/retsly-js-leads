@@ -17,11 +17,9 @@ module.exports = function(opts) {
   if(!opts.agent_id) throw new Error('no agent_id passed into retsly-js-leads');
   if(!opts.vendor_id) throw new Error('no vendor_id passed into retsly-js-leads');
   if(!opts.listing_id) throw new Error('no listing_id passed into retsly-js-leads');
-  if(!opts.retsly) throw new Error('no instance of Retsly passed into retsly-js-leads');
 
   var Components = {};
   var domain = opts.domain;
-  var retsly = opts.retsly;
   var agent_id = opts.agent_id;
   var vendor_id = opts.vendor_id;
   var listing_id = opts.listing_id;
