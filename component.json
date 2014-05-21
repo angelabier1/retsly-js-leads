@@ -5,12 +5,10 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "components/jquery": "1.10.2",
-    "jashkenas/underscore": "*",
-    "jashkenas/backbone": "*",
+    "component/dom": "*",
     "slajax/validate-form": "*",
-    "retsly/retsly-js-sdk": "*",
-    "retsly/jquery-cookie": "*"
+    "ForbesLindesay/ajax": "*",
+    "component/cookie": "*"
   },
   "development": {
     "timoxley/assert": "*",

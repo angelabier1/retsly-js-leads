@@ -105,7 +105,6 @@ body:after {
 }
 #commentfield {
   height: 150px;
-  display: none;
   width: 100%;
   border: none;
   padding: 10px;
@@ -117,7 +116,27 @@ body:after {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
+  transition: height 200ms ease-out;
+  -moz-transition: height 200ms ease-out;
+  -webkit-transition: height 200ms ease-out;
+  -ms-transition: height 200ms ease-out;
+  -o-transition: height 200ms ease-out;
 }
+
+#commentdiv {
+  height: 0px;
+  overflow: hidden;
+  transition: height 200ms ease-out;
+  -moz-transition: height 200ms ease-out;
+  -webkit-transition: height 200ms ease-out;
+  -ms-transition: height 200ms ease-out;
+  -o-transition: height 200ms ease-out;
+}
+
+#commentdiv.toggled {
+  height: 160px;
+}
+
 input[type=text] {
   width: 100%;
   margin-bottom: 10px;
@@ -139,3 +158,4 @@ input[type=text] {
   margin: 0 0 10px 0;
   display: block;
 }
+
