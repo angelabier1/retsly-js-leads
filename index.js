@@ -1,6 +1,3 @@
-/**
- * Dependencies
- */
 var $ = require('dom')
 var validate = require('validate-form')
 var template = require('./templates/template')
@@ -19,9 +16,7 @@ module.exports = function(opts) {
   this.vendor_id = opts.vendor_id
   this.listing_id = opts.listing_id
 
-  function tpl() {
-    return template()
-  }
+  var tpl = template()
 
   var Components = {}
 
@@ -29,19 +24,20 @@ module.exports = function(opts) {
     if (!el) throw new Error('no el passed into retsly-js-leads#Contactform')
     this.el = el
 
-    $(this.el).append(tpl())
+    $(this.el).append(tpl)
 
     // events
     $('#commentSpan').on('click', function(e) {
       $('#commentdiv').toggleClass('toggled')
     })
 
-    $('.send-button').on('click', function(e) {
+    $('.tab-right .send-button').on('click', function(e) {
       e.preventDefault()
       submitForm()
     })
 
-    var thisElement = $('#lead')
+    // var thisElement = $('#lead')
+    var thisElement = $('.presented-by').find('#lead')
     checkCookie(thisElement)
 
     // preload input fields if cookie exists with name, email, phone
@@ -61,11 +57,11 @@ module.exports = function(opts) {
       var name = $('#namefield').val()
       var tel = $('#telfield').val()
       var email = $('#emailfield').val()
-      var comment = $('#commentfield').val()
+      var message = $('#commentfield').val()
       var data = { name: name, 
                    phone: tel, 
                    email: email,
-                   comment: comment, 
+                   message: message, 
                    listingID: this.listing_id, 
                    vendorID: this.vendor_id, 
                    agentID: this.agent_id 
