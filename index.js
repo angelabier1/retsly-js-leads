@@ -27,7 +27,7 @@ module.exports = function(opts) {
     $(this.el).append(tpl)
 
     // events
-    $('#commentSpan').on('click', function(e) {
+    $('.tab-left #commentSpan').on('click', function(e) {
       $('#commentdiv').toggleClass('toggled')
     })
 
@@ -36,7 +36,6 @@ module.exports = function(opts) {
       submitForm()
     })
 
-    // var thisElement = $('#lead')
     var thisElement = $('.presented-by').find('#lead')
     checkCookie(thisElement)
 
