@@ -15,6 +15,7 @@ module.exports = function(opts) {
   this.agent_id = opts.agent_id
   this.vendor_id = opts.vendor_id
   this.listing_id = opts.listing_id
+  this.site_id = opts.site_id
 
   var tpl = template()
 
@@ -64,7 +65,7 @@ module.exports = function(opts) {
                    listingID: this.listing_id, 
                    vendorID: this.vendor_id, 
                    agentID: this.agent_id,
-                   origin: this.domain
+                   origin: this.site_id
                   }
       var url = this.domain+'/leads'
 
