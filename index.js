@@ -34,6 +34,7 @@ module.exports = function(opts) {
 
     $('.tab-right .send-button').on('click', function(e) {
       e.preventDefault()
+      e.target.innerHTML = "Submitted"
       submitForm()
     })
 
