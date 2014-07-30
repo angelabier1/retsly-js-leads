@@ -91,14 +91,17 @@ module.exports = function(opts) {
         .set({ validateEmpty: true })
 
         .field('name')
-          .is('required', 'Name field cannot be empty')
-
-        .field('email')
-          .is('required', 'Email field cannot be empty')
-          .is('email', 'please enter a valid email')
+          .is('required', 'Please enter your name.')
 
         .field('phone')
-          .is('required', 'Tel# field cannot be empty')
+          .is('required', "Please enter your phone number.")
+          .is(/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/, 
+            "Please enter a valid phone number (+ opt. 'ext. 999').")
+
+        .field('email')
+          .is('required', 'Please enter your email.')
+          .is(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,4}$/,
+            'Please enter a valid email.')
 
       return this
     }
