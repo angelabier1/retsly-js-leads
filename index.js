@@ -100,9 +100,9 @@ module.exports = function(opts) {
           .is('required', 'Please enter your name.')
 
         .field('phone')
-          .is('required', 'Please enter your phone number.')
+          .is('required', "Please enter your phone number.")
           .is(/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/, 
-            'Please enter a valid phone number.')
+            "Please enter a valid phone number (+ opt. 'ext. 999').")
 
         .field('email')
           .is('required', 'Please enter your email.')
