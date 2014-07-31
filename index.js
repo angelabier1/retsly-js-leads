@@ -95,12 +95,12 @@ module.exports = function(opts) {
 
         .field('phone')
           .is('required', "Please enter your phone number.")
-          .is(/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([xX]|[eE][xX][tT])\.?\s*(\d+))*$/, 
+          .is(/^(1\s*[-\/\.]?)?(\((\d{3})\)|(\d{3}))\s*[-\/\.]?\s*(\d{3})\s*[-\/\.]?\s*(\d{4})\s*(([eE][xX][tT])\.?\s*(\d+))*$/,
             "Please enter a valid phone number (+ opt. 'ext. 999').")
 
         .field('email')
           .is('required', 'Please enter your email.')
-          .is(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+          .is(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,}$/,
             'Please enter a valid email.')
 
       return this
