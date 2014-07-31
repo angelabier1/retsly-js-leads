@@ -100,7 +100,7 @@ module.exports = function(opts) {
 
         .field('email')
           .is('required', 'Please enter your email.')
-          .is(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]{2,4}$/,
+          .is(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
             'Please enter a valid email.')
 
       return this
