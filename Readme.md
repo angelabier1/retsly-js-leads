@@ -11,6 +11,9 @@
 
 ## API
 
+### Repo Owner
+---
+[@switters](https://github.com/switters)
 
 
 ## License
