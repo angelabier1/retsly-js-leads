@@ -108,7 +108,7 @@ module.exports = function(opts) {
         var totalWidth = parseInt(totalWidthPX.replace(/\D/g,''));
         var finalWidth = totalWidth;
         if(barWidth > totalWidth){
-          CompleteForm("Thank you, the message is sent");
+          CompleteForm("Thank you, your message has been sent");
           clearInterval(interval);
         } else {
           $('#progress-bar').css('width',(barWidth/totalWidth*100)+Math.floor((Math.random()*50)+1)+"%");
