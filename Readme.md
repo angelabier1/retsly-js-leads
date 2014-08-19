@@ -9,7 +9,13 @@
 
     $ component install retsly/retsly-js-leads
 
-## API
+## Version
+
+  0.0.3
+
+## Dev
+  
+  To create a test build of the leads input component (accessible at test.html), use `$ component build --dev`.
 
 ### Repo Owner
 ---
