@@ -22,16 +22,18 @@ body:after {
 /* Opera/IE 8+ */
 }
 #form-container {
-  width: 300px;
+  width: 100%;
   font-family: 'Open Sans';
 }
 #form-body {
+  transition: all 1s ease;
+  height: 100%;
   background: #88afd1;
-  -webkit-border-radius: 4px 4px 0px 4px;
-  -moz-border-radius: 4px 4px 0px 4px;
-  -ms-border-radius: 4px 4px 0px 4px;
-  -o-border-radius: 4px 4px 0px 4px;
-  border-radius: 4px 4px 0px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -ms-border-radius: 4px 4px 4px 4px;
+  -o-border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 4px 4px;
   padding: 10px;
   padding-bottom: 0;
 }
@@ -40,7 +42,6 @@ body:after {
 }
 #button-section {
   *zoom: 1;
-  height: 50px;
 }
 #button-section:before,
 #button-section:after {
@@ -51,33 +52,25 @@ body:after {
   clear: both;
 }
 #button-section .tab-left {
-  display: inline;
-  float: left;
+  display: block;
   overflow: hidden;
-  width: 66.6666666666667%;
   margin: 0 0%;
-  *width: 66.6666666666667% -correction;
-  *margin: 0 0% -correction;
   padding: 0px 10px 10px 10px;
   line-height: 30px;
-  float: left;
 }
 #button-section .tab-left #commentSpan {
-  font-size: 0.8em;
+  font-size: 1em;
+  font-weight: 600;
+  display:block;
+  text-align: center;
   cursor: pointer;
-  color: #88afd1;
+  color: #333333;
 }
-#button-section .tab-right {
-  display: inline;
-  float: left;
+#button-section #tab-right-bar {
+  display: block;
   overflow: hidden;
-  width: 33.3333333333333%;
-  margin: 0 0%;
-  *width: 33.3333333333333% -correction;
-  *margin: 0 0% -correction;
-  float: right;
+  margin: 0 0% -correction;
   background: #88afd1;
-  padding: 0px 10px 10px 10px;
   -webkit-border-radius: 0px 0px 4px 4px;
   -moz-border-radius: 0px 0px 4px 4px;
   -ms-border-radius: 0px 0px 4px 4px;
@@ -97,12 +90,19 @@ body:after {
   border-radius: 4px;
   border: none;
   margin: 0;
+  margin-bottom: 15px;
+  cursor:pointer;
+}
+
+#button-section .send-button:hover {
+  background:#333333;
 }
 .header-text {
   font-size: 1em;
   color: #fff;
   padding: 0 0 10px 0;
 }
+
 #commentfield {
   height: 150px;
   width: 100%;
@@ -138,6 +138,7 @@ body:after {
 }
 
 input[type=text] {
+  display: block;
   width: 100%;
   margin-bottom: 10px;
   padding: 10px;
@@ -150,12 +151,50 @@ input[type=text] {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
+
 ::-webkit-input-placeholder {
   color: #787878;
 }
+
 .validator-message {
   font-size: 0.8em;
+  color:#ffffff;
+  font-weight: 600;
   margin: 0 0 10px 0;
   display: block;
 }
 
+#progress-bar{
+  transition: width 200ms ease-out;
+  -moz-transition: width 200ms ease-out;
+  -webkit-transition: width 200ms ease-out;
+  -ms-transition: width 200ms ease-out;
+  -o-transition: width 200ms ease-out;
+  display: none;
+  position: relative;
+  top: -25px;
+  background: black;
+  height: 35px;
+  width: 0%;
+  margin-top: -25px;
+  display: block;
+}
+
+/*Hides and adjust form elements when hidden*/
+.completeAnimation input[type=text]{
+  display:none !important;
+}
+
+.completeAnimation .header-text{
+  text-align: center !important;
+  margin: 20px !important;
+}
+
+.completeAnimation #commentdiv{
+  display:none !important;
+  height:0 !important;
+}
+
+.completeAnimation #button-section{
+  display:none !important;
+}
