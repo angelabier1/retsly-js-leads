@@ -1,8 +1,9 @@
-var $ = require('dom')
+var $ = window.$ = require('dom')
 var validate = require('validate-form')
 var template = require('./templates/template')
 var ajax = require('ajax')
 var cookie = require('cookie')
+var progressCompleted = false;
 
 module.exports = function(opts) {
   if(!opts) throw new Error('no options passed into retsly-js-leads')
@@ -31,7 +32,7 @@ module.exports = function(opts) {
       $('#commentdiv').toggleClass('toggled')
     })
 
-    $('.tab-right .send-button').on('click', function(e) {
+    $('#tab-right-bar .send-button').on('click', function(e) {
       e.preventDefault()
       submitForm()
     })
@@ -39,16 +40,21 @@ module.exports = function(opts) {
     var thisElement = $('.presented-by').find('#lead')
     checkCookie(thisElement)
 
-    // preload input fields if cookie exists with name, email, phone
+    // 1.Preload input fields if cookie exists with name, email, phone
+    // 2.Hides fields if this listing ID has been contacted.
     function checkCookie() {
-      if(cookie('name')) {
+      if(!cookie(opts.listing_id)){
+        if(cookie('name')) {
         thisElement.find('#namefield').val(cookie('name'))
-      }
-      if(cookie('email')) {
-        thisElement.find('#emailfield').val(cookie('email'))
-      }
-      if(cookie('phone')) {
-        thisElement.find('#telfield').val(cookie('phone'))
+        }
+        if(cookie('email')) {
+          thisElement.find('#emailfield').val(cookie('email'))
+        }
+        if(cookie('phone')) {
+          thisElement.find('#telfield').val(cookie('phone'))
+        }
+      } else {
+        CompleteForm("You have already contacted this agent");
       }
     }
 
@@ -72,15 +78,48 @@ module.exports = function(opts) {
       this.form.validateAll(function(err, valid, msg) {
         if(!valid) return
 
+        // progress bar animation
+        startProgressAnimation();
+
         this.retsly.post('/api/v1/lead/', data, success)
+
         function success(res) {
-          if (res.success) {
-            cookie('name', res.bundle.name)
-            cookie('phone', res.bundle.phone)
-            cookie('email', res.bundle.email)
+          if (res.success){
+            cookie('name', res.bundle.name);
+            cookie('phone', res.bundle.phone);
+            cookie('email', res.bundle.email);
+            cookie(opts.listing_id, true, {maxage:60*60}); // Sets listing ID as cookie
+          } else {
+            $('.header-text').text('Sorry, please try again.');
           }
         }
       })
+    }
+
+    //Fake Progress Bar Animation
+    function startProgressAnimation(){
+      
+      $('#progress-bar').css('display','block');
+
+      var interval = setInterval(function(){
+        var barWidthPX = $('#progress-bar').css('width');
+        var totalWidthPX = $('#tab-right-bar').css('width');
+        var barWidth = parseInt(barWidthPX.replace(/\D/g,''));
+        var totalWidth = parseInt(totalWidthPX.replace(/\D/g,''));
+        var finalWidth = totalWidth;
+        if(barWidth > totalWidth){
+          CompleteForm("Thank you, the message is sent");
+          clearInterval(interval);
+        } else {
+          $('#progress-bar').css('width',(barWidth/totalWidth*100)+Math.floor((Math.random()*50)+1)+"%");
+        } 
+      },50);
+    }
+
+    //Completed form animation and message Change
+    function CompleteForm(message){
+      $('#form-body').addClass('completeAnimation');
+      $('.header-text').text(message);
     }
 
     function validateform() {
