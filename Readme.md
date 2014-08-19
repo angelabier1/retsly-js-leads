@@ -9,7 +9,9 @@
 
     $ component install retsly/retsly-js-leads
 
-## API
+## Dev
+
+  Build with `$ component build --dev`
 
 ### Repo Owner
 ---
