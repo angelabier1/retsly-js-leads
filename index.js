@@ -1,6 +1,6 @@
 var $ = window.$ = require('dom')
 var validate = require('validate-form')
-var template = require('./templates/template')
+var template = require('./templates/template.html')
 var ajax = require('ajax')
 var cookie = require('cookie')
 var progressCompleted = false;
@@ -18,14 +18,14 @@ module.exports = function(opts) {
   this.listing_id = opts.listing_id
   this.site_id = opts.site_id
 
-  var tpl = template()
+  // var tpl = template()
 
   var Components = {}
 
   Components.ContactForm = function(el) {
     if (!el) throw new Error('no el passed into retsly-js-leads#Contactform')
     this.el = el
-    $(this.el).append(tpl)
+    $(this.el).append(template)
 
     // events
     $('.tab-left #commentSpan').on('click', function(e) {
