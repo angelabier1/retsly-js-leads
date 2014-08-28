@@ -18,10 +18,12 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": [
-    "index.js",
-    "templates/template.js"
+    "index.js"
   ],
   "styles": [
-    "style.css"
+    "style/style.css"
+  ],
+  "templates": [
+    "templates/template.html"
   ]
 }
