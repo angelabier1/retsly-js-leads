@@ -21,7 +21,7 @@
     "index.js"
   ],
   "styles": [
-    "style.css"
+    "style/style.css"
   ],
   "templates": [
     "templates/template.html"
