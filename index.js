@@ -3,7 +3,7 @@ var validate = require('validate-form')
 var template = require('./templates/template.html')
 var ajax = require('ajax')
 var cookie = require('cookie')
-var progressCompleted = false;
+var http = require('superagent')
 
 module.exports = function(opts) {
   if(!opts) throw new Error('no options passed into retsly-js-leads')
@@ -11,14 +11,13 @@ module.exports = function(opts) {
   if(!opts.agent_id) throw new Error('no agent_id passed into retsly-js-leads')
   if(!opts.vendor_id) throw new Error('no vendor_id passed into retsly-js-leads')
   if(!opts.listing_id) throw new Error('no listing_id passed into retsly-js-leads')
+  if(!opts.lead_endpoint) throw new Error('no lead_endpoint passed into retsly-js-leads')
 
   this.retsly = opts.retsly
   this.agent_id = opts.agent_id
   this.vendor_id = opts.vendor_id
   this.listing_id = opts.listing_id
   this.site_id = opts.site_id
-
-  // var tpl = template()
 
   var Components = {}
 
@@ -63,31 +62,35 @@ module.exports = function(opts) {
       var tel = $('#telfield').val()
       var email = $('#emailfield').val()
       var message = $('#commentfield').val()
-      var data = { name: name,
-                   phone: tel,
-                   email: email,
-                   message: message,
-                   listingID: this.listing_id,
-                   vendorID: this.vendor_id,
-                   agentID: this.agent_id,
-                   origin: this.site_id,
-                   session: this.retsly.sid
-                 }
+      var data = {
+        name: name,
+        phone: tel,
+        email: email,
+        message: message,
+        listingID: this.listing_id,
+        vendorID: this.vendor_id,
+        agentID: this.agent_id,
+        origin: this.site_id,
+        session: this.retsly.sid
+      }
 
       var val = validateform()
       this.form.validateAll(function(err, valid, msg) {
         if(!valid) return
 
         // progress bar animation
+        var progressCompleted = false;
         startProgressAnimation();
+        http
+          .post(opts.lead_endpoint)
+          .send(data)
+          .end(success)
 
-        this.retsly.post('/api/v1/lead/', data, success)
-
-        function success(res) {
-          if (res.success){
-            cookie('name', res.bundle.name);
-            cookie('phone', res.bundle.phone);
-            cookie('email', res.bundle.email);
+        function success(err, res) {
+          if (res.body.success) {
+            cookie('name', res.body.bundle.name);
+            cookie('phone', res.body.bundle.phone);
+            cookie('email', res.body.bundle.email);
             cookie(opts.listing_id, true, {maxage:60*60}); // Sets listing ID as cookie
           } else {
             $('.header-text').text('Sorry, please try again.');
@@ -98,7 +101,6 @@ module.exports = function(opts) {
 
     //Fake Progress Bar Animation
     function startProgressAnimation(){
-      
       $('#progress-bar').css('display','block');
 
       var interval = setInterval(function(){
@@ -107,12 +109,12 @@ module.exports = function(opts) {
         var barWidth = parseInt(barWidthPX.replace(/\D/g,''));
         var totalWidth = parseInt(totalWidthPX.replace(/\D/g,''));
         var finalWidth = totalWidth;
-        if(barWidth > totalWidth){
-          CompleteForm("Thank you, your message has been sent");
+        if(barWidth >= totalWidth){
+          CompleteForm("Thank you, your message has been sent.");
           clearInterval(interval);
         } else {
           $('#progress-bar').css('width',(barWidth/totalWidth*100)+Math.floor((Math.random()*50)+1)+"%");
-        } 
+        }
       },50);
     }
 
