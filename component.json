@@ -14,7 +14,8 @@
   "development": {
     "timoxley/assert": "0.0.1",
     "visionmedia/mocha": "1.14.0",
-    "retsly/retsly-js-sdk": "^0.6.5"
+    "retsly/retsly-js-sdk": "^0.6.5",
+    "retsly/retsly-js-leads": "^0.1.1"
   },
   "license": "MIT",
   "main": "index.js",

@@ -8,7 +8,9 @@ opts.retsly = {'sid': ''}
 opts.agent_id = "532d4cc58b0b042a02aeb469";
 opts.vendor_id = "test";
 opts.listing_id = "532d4cc68b0b042a02aebd38";
-var Leads = require('retsly-leads')(opts);
+opts.lead_endpoint = "/leads";
+
+var Leads = require('retsly-js-leads')(opts);
 
 suite('Exports Modules');
 
