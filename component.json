@@ -8,7 +8,8 @@
     "component/dom": "1.0.5",
     "slajax/validate-form": "master",
     "retsly/ajax": "0.0.3",
-    "component/cookie": "1.0.1"
+    "component/cookie": "1.0.1",
+    "visionmedia/superagent": "0.18.0"
   },
   "development": {
     "timoxley/assert": "0.0.1",
