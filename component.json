@@ -2,18 +2,20 @@
   "name": "retsly-js-leads",
   "repo": "retsly/retsly-js-leads",
   "description": "UI for creating leads on Retsly",
-  "version": "0.0.3",
+  "version": "0.1.2",
   "keywords": [],
   "dependencies": {
     "component/dom": "1.0.5",
     "slajax/validate-form": "master",
     "retsly/ajax": "0.0.3",
-    "component/cookie": "1.0.1"
+    "component/cookie": "1.0.1",
+    "visionmedia/superagent": "0.18.0"
   },
   "development": {
     "timoxley/assert": "0.0.1",
     "visionmedia/mocha": "1.14.0",
-    "retsly/retsly-js-sdk": "^0.6.5"
+    "retsly/retsly-js-sdk": "^0.6.5",
+    "retsly/retsly-js-leads": "^0.1.1"
   },
   "license": "MIT",
   "main": "index.js",
